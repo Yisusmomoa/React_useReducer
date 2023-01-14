@@ -1,0 +1,12 @@
+Retornara el mismo estado, si se dispara la misma acción,
+con el mismo payload
+
+los parámetros de entrada (state, action) no deben ser mutados (alterados).
+Debes utilizar funciones que no modifiquen el valor original, como 
+"push" sino que retornen uno nuevo, como "filter", "find", "map", "reduce"
+
+
+cuando utilizar un useReducer
+-cuando se involucra una lógica compleja que involucra subvalores
+-cuando sobre un estado se realizan muchas acciones distintas para actualizarlo
+-cuando el proximo estado depende del anterior

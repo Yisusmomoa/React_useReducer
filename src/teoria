@@ -1,0 +1,61 @@
+pure function
+son auqellas que operan utilizando solo los parametros de entrada
+SIN RECURRIR O AFECTAR A NINGÚN OTRO ELEMENTO FUERA DE ELLAS
+
+    DEBE CUMPLIR ESTAS DOS CONDICIONES
+    
+    Dados unos parametros de entrada de indentico valor, la función siempre 
+    devolverá el mismo resultado.
+    El computo de la función, su lógica, no implica ningún efecto observable
+    colateral fuera de ella
+
+ejemplos:
+
+function pureFoo(a,b){
+    return a+b
+}
+
+function One(){
+    return 1
+}
+
+
+----No cumplen las condiciones para ser una función pura
+
+cumple la primera condición pero no cumple la segunda, porque modifica el dom algo que es extrerno a la función
+function documentModify(){
+    document.write("Hello")
+}
+
+No cumple la primera condición porque no regresa siempre el mismo resultado
+function randomSum(a,b){
+    return a+b+Math.random()
+}
+
+No cumple la primera condiciónporque regresa diferentes valores externos
+y por lo tanto no se puede usar dentro de un reducer
+function getTime(){
+    return Date.now()
+}
+
+No es una función pura porque modifica una variable externa, si cumple
+con la primera condición porque siempre que le mande un 4 me regresará
+el mismo valor
+function addNumberToArray(arr, n){
+    arr.push(n)
+    return arr
+}
+const numbers=[1,2,3]
+console.log(numbers); //[1,2,3]
+console.log(addNumberToArray(numbers, 4)); //[1,2,3,4]
+console.log(numbers); //[1,2,3,4]
+
+
+cumple con ambas condiciones
+function addNumberToArray(arr, n){
+    return [...arr, n]
+}
+const numbers=[1,2,3]
+console.log(numbers); //[1,2,3]
+console.log(addNumberToArray(numbers, 4)); //[1,2,3,4]
+console.log(numbers); //[1,2,3]

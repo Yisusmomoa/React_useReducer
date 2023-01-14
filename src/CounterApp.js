@@ -5,7 +5,11 @@ const types={
     decrement:'decrement',
     reset:'reset'
 }
-
+const initialState=10.25;
+const init=(value)=>{
+    // es una mutación del valor inicial
+    return parseInt(value)
+}
 // otra ventaja es cuando tenemos varios reducers
 // supongamos que tenemmos un reducer de un contador y otro de un usuario que necesiita ejecutar varias acciones
 // cada vez que se incrementa, decrementa y resetea
@@ -18,7 +22,7 @@ const counterReducer=(state, action)=>{
         case types.decrement:
             return state-1
         case types.reset:
-            return 0
+            return init(initialState)
         default:
             return state
     }
@@ -45,7 +49,8 @@ const CounterApp = () => {
         dispatch se utiliza para disparar acciones para actualizar nuestro state
     */
 //    Un reducer es una función pura
-   const [counter, dispatch] = useReducer(counterReducer, 0)
+
+   const [counter, dispatch] = useReducer(counterReducer, initialState, init)
     /*
     no va a interectuar con estados externos, perfectamente lo podemos crear fuera del componente o en un archivo separado
     */
