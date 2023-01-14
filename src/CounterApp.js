@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-
+    
 const types={
     increment:'increment',
     decrement:'decrement',

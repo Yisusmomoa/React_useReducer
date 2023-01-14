@@ -28,7 +28,11 @@ const todoReducer=(state, action)=>{
     case types.add:
       return [...state, action.payload]
       // en este caso no es recomendable usar push porque modifica el estado y es incorrecto usarlo en el contexto de un reducer
-    default:
+    case types.update:{
+      const todoEdit=action.payload
+      return state.map(todo=>todo.id===todoEdit.id ? todoEdit:todo)
+    }
+      default:
       return state
   }
 }
@@ -59,6 +63,12 @@ const TodoApp = () => {
                 type:types.delete,
                 payload:todo.id
                 })}}>Delete</button>
+                <button onClick={()=>{
+                  dispatch({
+                    type:types.update,
+                    payload:{...todo, title:text}
+                  })
+                }}>Update</button>
             </li>
           ))
         }
